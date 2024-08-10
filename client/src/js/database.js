@@ -17,7 +17,7 @@ export const putDb = async (content) => {
   //this is the DB and version
   const jateDB = await openDB("jate", 1);
   //new transaction defines db and privlage
-  const tx = jateDB.trasaction("jate", "readwrite");
+  const tx = jateDB.transaction("jate", "readwrite");
   //opens set object in store
   const store = tx.objectStore("jate");
   //passes content
@@ -31,9 +31,9 @@ export const putDb = async (content) => {
 export const getDb = async () => {
   
   const jateDB= await openDB("jate", 1);
-  const tx = jateDB.trasaction("jate", "readonly");
+  const tx = jateDB.transaction("jate", "readonly");
   const store = tx.objectStore("jate");
-  const request= store.getAll();
+  const request= store.get(1);
   const result= await request;
   console.log("date read to DB", result);
   return result.value;
